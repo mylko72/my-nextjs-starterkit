@@ -115,6 +115,8 @@ export default function ComponentsPage() {
   const [checkboxChecked, setCheckboxChecked] = useState(false);
   const [radioValue, setRadioValue] = useState("option1");
   const [selectValue, setSelectValue] = useState("");
+  // 선택된 데이터를 관리할 상태 (초기값 null)
+  const [selectedItem, setSelectedItem] = useState<{name: string, email: string, role: string, status: string} | null>(null);
 
   return (
     <div className="container mx-auto px-4 py-12 max-w-5xl">
@@ -528,23 +530,58 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
               </TableRow>
             </TableHeader>
             <TableBody>
-              {tableData.map((row) => (
-                <TableRow key={row.id}>
-                  <TableCell className="font-mono text-muted-foreground">{row.id}</TableCell>
-                  <TableCell className="font-medium">{row.name}</TableCell>
-                  <TableCell className="text-muted-foreground">{row.email}</TableCell>
-                  <TableCell>
-                    <Badge variant={row.role === "Admin" ? "default" : "secondary"}>
-                      {row.role}
-                    </Badge>
-                  </TableCell>
-                  <TableCell>
-                    <span className={`text-sm font-medium ${row.status === "활성" ? "text-green-600 dark:text-green-400" : "text-muted-foreground"}`}>
-                      {row.status}
-                    </span>
-                  </TableCell>
-                </TableRow>
-              ))}
+              <Dialog>
+                {tableData.map((row) => (
+                  <TableRow key={row.id}>
+                    <TableCell className="font-mono text-muted-foreground">{row.id}</TableCell>
+                    <TableCell className="font-medium">
+                      <DialogTrigger asChild key={row.id}>
+                        <Button onClick={() => setSelectedItem(row)} variant="link" className="px-0">
+                          {row.name}
+                        </Button>
+                      </DialogTrigger>
+                    </TableCell>
+                    <TableCell className="text-muted-foreground">{row.email}</TableCell>
+                    <TableCell>
+                      <Badge variant={row.role === "Admin" ? "default" : "secondary"}>
+                        {row.role}
+                      </Badge>
+                    </TableCell>
+                    <TableCell>
+                      <span className={`text-sm font-medium ${row.status === "활성" ? "text-green-600 dark:text-green-400" : "text-muted-foreground"}`}>
+                        {row.status}
+                      </span>
+                    </TableCell>
+                  </TableRow>
+                ))}
+
+                <DialogContent>
+                  <DialogHeader>
+                    {/* 2. 상태값에 따라 동적으로 내용 변경 */}
+                    <DialogTitle>{selectedItem?.name}</DialogTitle>
+                  </DialogHeader>
+                  <div className="py-0">
+                    <p><span className="text-muted-foreground mr-2">이메일:</span> {selectedItem?.email}</p>
+                  </div>
+                  <div className="py-0">
+                    <p><span className="text-muted-foreground mr-2">역할:</span> {selectedItem?.role}</p>
+                  </div>
+                  <div className="py-0">
+                    <p><span className="text-muted-foreground mr-2">상태:</span> {selectedItem?.status}</p>
+                  </div>
+                  <hr className="my-4" />
+                  <form className="space-y-4">
+                    <div className="space-y-2">
+                      <label htmlFor="userName">이름</label>
+                      <Input id="userName" name="userName" placeholder="이름을 입력하세요" className="mt-4" />
+                    </div>
+                    
+                    <div className="flex justify-end gap-2">
+                      <Button type="submit">저장하기</Button>
+                    </div>
+                  </form>
+                </DialogContent>
+              </Dialog>
             </TableBody>
           </Table>
         </div>
