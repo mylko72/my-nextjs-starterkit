@@ -10,7 +10,7 @@ const ReactIcon = () => (
 
 const NextjsIcon = () => (
   <svg className="w-7 h-7" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path d="M11.5722 0C5.1835 0 0 5.1835 0 11.5722c0 6.3887 5.1835 11.572 11.5722 11.572 6.3887 0 11.572-5.1833 11.572-11.572C23.1442 5.1835 17.9609 0 11.5722 0zm5.6673 20.6459L4.9587 6.4975H3.7262v8.3597H5.098v-6.267L15.0044 21.44c.7483-.254 1.4572-.5882 2.1351-.7941zm1.5708-5.6888V6.4975h-1.3722v8.3597h1.3722z" />
+    <path fillRule="evenodd" clipRule="evenodd" d="M11.5722 0C5.1835 0 0 5.1835 0 11.5722c0 6.3887 5.1835 11.572 11.5722 11.572 6.3887 0 11.572-5.1833 11.572-11.572C23.1442 5.1835 17.9609 0 11.5722 0zm5.6673 20.6459L4.9587 6.4975H3.7262v8.3597H5.098v-6.267L15.0044 21.44c.7483-.254 1.4572-.5882 2.1351-.7941zm1.5708-5.6888V6.4975h-1.3722v8.3597h1.3722z" />
   </svg>
 );
 
@@ -21,14 +21,16 @@ const TailwindIcon = () => (
 );
 
 const ShadcnIcon = () => (
-  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path d="M3 3h8v2H5v14h14v-6h2v8H3V3zm10 0h8v8h-2V6.414L10.707 14.707l-1.414-1.414L17.586 5H13V3z" />
+  <svg className="w-7 h-7" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="208" y1="128" x2="128" y2="208" stroke="currentColor" strokeLinecap="round" strokeWidth="32" />
+    <line x1="192" y1="40" x2="40" y2="192" stroke="currentColor" strokeLinecap="round" strokeWidth="32" />
   </svg>
 );
 
 const LucideIcon = () => (
-  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" />
+  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    <path d="M12 3a9 9 0 0 1 9 9" stroke="#F56565" strokeWidth="2" strokeLinecap="round" />
   </svg>
 );
 
