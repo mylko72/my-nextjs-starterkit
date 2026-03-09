@@ -31,9 +31,16 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground transition-colors duration-300`}
       >
+        {/* 스킵 네비게이션 링크 */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-background focus:border focus:rounded-md focus:text-foreground focus:ring-2 focus:ring-ring"
+        >
+          본문으로 바로가기
+        </a>
         <ThemeProvider>
           <NavBar />
-          <main className="min-h-screen">
+          <main id="main-content" className="min-h-screen">
             {children}
           </main>
           <Footer />

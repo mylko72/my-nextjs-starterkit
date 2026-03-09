@@ -128,10 +128,10 @@ export default function HomePage() {
       </section>
 
       {/* 주요 기능 섹션 */}
-      <section className="py-20 md:py-28">
+      <section className="py-20 md:py-28" aria-labelledby="features-title">
         <div className="container mx-auto px-4">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">주요 기능</h2>
+            <h2 id="features-title" className="text-3xl md:text-4xl font-bold mb-4">주요 기능</h2>
             <p className="text-muted-foreground text-lg max-w-xl mx-auto">
               개발 생산성을 높이는 다양한 기능들을 제공합니다.
             </p>
@@ -162,10 +162,10 @@ export default function HomePage() {
       </section>
 
       {/* 시작하기 섹션 */}
-      <section className="py-20 bg-muted/30 border-t border-border">
+      <section className="py-20 bg-muted/30 border-t border-border" aria-labelledby="quick-start-title">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold mb-4 text-center">빠른 시작</h2>
+            <h2 id="quick-start-title" className="text-3xl font-bold mb-4 text-center">빠른 시작</h2>
             <p className="text-muted-foreground text-center mb-10">
               아래 명령어를 실행하여 개발 서버를 시작하세요.
             </p>
@@ -212,9 +212,9 @@ export default function HomePage() {
       </section>
 
       {/* CTA 섹션 */}
-      <section className="py-20 text-center">
+      <section className="py-20 text-center" aria-labelledby="cta-title">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-4">지금 시작해보세요</h2>
+          <h2 id="cta-title" className="text-3xl font-bold mb-4">지금 시작해보세요</h2>
           <p className="text-muted-foreground mb-8 max-w-md mx-auto">
             다양한 컴포넌트와 API 문서를 확인하고 나만의 프로젝트를 만들어보세요.
           </p>
