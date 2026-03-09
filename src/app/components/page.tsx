@@ -530,61 +530,73 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
               </TableRow>
             </TableHeader>
             <TableBody>
-              <Dialog>
-                {tableData.map((row) => (
-                  <TableRow key={row.id}>
-                    <TableCell className="font-mono text-muted-foreground">{row.id}</TableCell>
-                    <TableCell className="font-medium">
-                      <DialogTrigger asChild key={row.id}>
-                        <Button onClick={() => setSelectedItem(row)} variant="link" className="px-0">
-                          {row.name}
-                        </Button>
-                      </DialogTrigger>
-                    </TableCell>
-                    <TableCell className="text-muted-foreground">{row.email}</TableCell>
-                    <TableCell>
-                      <Badge variant={row.role === "Admin" ? "default" : "secondary"}>
-                        {row.role}
-                      </Badge>
-                    </TableCell>
-                    <TableCell>
-                      <span className={`text-sm font-medium ${row.status === "활성" ? "text-green-600 dark:text-green-400" : "text-muted-foreground"}`}>
-                        {row.status}
-                      </span>
-                    </TableCell>
-                  </TableRow>
-                ))}
-
-                <DialogContent>
-                  <DialogHeader>
-                    {/* 2. 상태값에 따라 동적으로 내용 변경 */}
-                    <DialogTitle>{selectedItem?.name}</DialogTitle>
-                  </DialogHeader>
-                  <div className="py-0">
-                    <p><span className="text-muted-foreground mr-2">이메일:</span> {selectedItem?.email}</p>
-                  </div>
-                  <div className="py-0">
-                    <p><span className="text-muted-foreground mr-2">역할:</span> {selectedItem?.role}</p>
-                  </div>
-                  <div className="py-0">
-                    <p><span className="text-muted-foreground mr-2">상태:</span> {selectedItem?.status}</p>
-                  </div>
-                  <hr className="my-4" />
-                  <form className="space-y-4">
-                    <div className="space-y-2">
-                      <label htmlFor="userName">이름</label>
-                      <Input id="userName" name="userName" placeholder="이름을 입력하세요" className="mt-4" />
-                    </div>
-                    
-                    <div className="flex justify-end gap-2">
-                      <Button type="submit">저장하기</Button>
-                    </div>
-                  </form>
-                </DialogContent>
-              </Dialog>
+              {tableData.map((row) => (
+                <TableRow key={row.id}>
+                  <TableCell className="font-mono text-muted-foreground">{row.id}</TableCell>
+                  <TableCell className="font-medium">
+                    <Button
+                      onClick={() => {
+                        setSelectedItem(row);
+                        setDialogOpen(true);
+                      }}
+                      variant="link"
+                      className="px-0"
+                    >
+                      {row.name}
+                    </Button>
+                  </TableCell>
+                  <TableCell className="text-muted-foreground">{row.email}</TableCell>
+                  <TableCell>
+                    <Badge variant={row.role === "Admin" ? "default" : "secondary"}>
+                      {row.role}
+                    </Badge>
+                  </TableCell>
+                  <TableCell>
+                    <span className={`text-sm font-medium ${row.status === "활성" ? "text-green-600 dark:text-green-400" : "text-muted-foreground"}`}>
+                      {row.status}
+                    </span>
+                  </TableCell>
+                </TableRow>
+              ))}
             </TableBody>
           </Table>
         </div>
+
+        {/* Dialog를 TableBody 밖으로 분리 */}
+        <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>{selectedItem?.name}</DialogTitle>
+            </DialogHeader>
+            <div className="py-0">
+              <p><span className="text-muted-foreground mr-2">이메일:</span> {selectedItem?.email}</p>
+            </div>
+            <div className="py-0">
+              <p><span className="text-muted-foreground mr-2">역할:</span> {selectedItem?.role}</p>
+            </div>
+            <div className="py-0">
+              <p><span className="text-muted-foreground mr-2">상태:</span> {selectedItem?.status}</p>
+            </div>
+            <hr className="my-4" />
+            <form
+              className="space-y-4"
+              onSubmit={(e) => {
+                e.preventDefault();
+                toast.success("저장되었습니다.");
+                setDialogOpen(false);
+              }}
+            >
+              <div className="space-y-2">
+                <Label htmlFor="userName">이름</Label>
+                <Input id="userName" name="userName" placeholder="이름을 입력하세요" className="mt-1" />
+              </div>
+
+              <div className="flex justify-end gap-2">
+                <Button type="submit">저장하기</Button>
+              </div>
+            </form>
+          </DialogContent>
+        </Dialog>
       </ComponentSection>
 
       {/* Loading Spinner */}
