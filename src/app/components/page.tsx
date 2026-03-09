@@ -37,6 +37,12 @@ import {
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Separator } from "@/components/ui/separator";
 import { Spinner } from "@/components/ui/spinner";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
 import { copyToClipboard } from "@/utils/format";
 
 // 테이블 예시 데이터
@@ -597,6 +603,116 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
             </form>
           </DialogContent>
         </Dialog>
+      </ComponentSection>
+
+      {/* Accordion */}
+      <ComponentSection
+        title="Accordion"
+        description="접을 수 있는 섹션으로 콘텐츠를 구성하는 Accordion 컴포넌트입니다."
+        code={`import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
+
+// Single type (한 번에 하나만 열림)
+<Accordion type="single" collapsible>
+  <AccordionItem value="item-1">
+    <AccordionTrigger>첫 번째 섹션</AccordionTrigger>
+    <AccordionContent>
+      첫 번째 섹션의 상세 내용입니다.
+    </AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="item-2">
+    <AccordionTrigger>두 번째 섹션</AccordionTrigger>
+    <AccordionContent>
+      두 번째 섹션의 상세 내용입니다.
+    </AccordionContent>
+  </AccordionItem>
+</Accordion>
+
+// Multiple type (여러 개 동시에 열림)
+<Accordion type="multiple">
+  <AccordionItem value="item-1">
+    <AccordionTrigger>섹션 1</AccordionTrigger>
+    <AccordionContent>섹션 1의 내용</AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="item-2">
+    <AccordionTrigger>섹션 2</AccordionTrigger>
+    <AccordionContent>섹션 2의 내용</AccordionContent>
+  </AccordionItem>
+</Accordion>`}
+      >
+        <div className="space-y-8">
+          {/* Single Type */}
+          <div>
+            <p className="text-sm text-muted-foreground mb-3 font-medium">Single Type (한 번에 하나만 열림)</p>
+            <Accordion type="single" collapsible className="border rounded-lg overflow-hidden">
+              <AccordionItem value="faq-1" className="border-b last:border-b-0">
+                <AccordionTrigger className="px-4 hover:bg-muted/50">
+                  Accordion은 어떻게 사용하나요?
+                </AccordionTrigger>
+                <AccordionContent className="px-4 text-muted-foreground">
+                  Accordion 컴포넌트를 사용하여 긴 콘텐츠를 섹션별로 나누고 필요할 때만 펼칠 수 있습니다.
+                  트리거를 클릭하면 콘텐츠가 부드러운 애니메이션으로 열리고 닫힙니다.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="faq-2" className="border-b last:border-b-0">
+                <AccordionTrigger className="px-4 hover:bg-muted/50">
+                  여러 섹션을 동시에 열 수 있나요?
+                </AccordionTrigger>
+                <AccordionContent className="px-4 text-muted-foreground">
+                  기본적으로 `type="single"`은 한 번에 하나의 섹션만 열립니다.
+                  여러 섹션을 동시에 열려면 `type="multiple"`을 사용하세요.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="faq-3" className="border-b last:border-b-0">
+                <AccordionTrigger className="px-4 hover:bg-muted/50">
+                  디자인을 커스터마이즈할 수 있나요?
+                </AccordionTrigger>
+                <AccordionContent className="px-4 text-muted-foreground">
+                  네, Tailwind CSS 클래스를 사용하여 완전히 커스터마이즈할 수 있습니다.
+                  각 컴포넌트에 `className` prop을 전달하여 스타일을 적용하세요.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+
+          {/* Multiple Type */}
+          <div>
+            <p className="text-sm text-muted-foreground mb-3 font-medium">Multiple Type (여러 개 동시에 열림)</p>
+            <Accordion type="multiple" className="border rounded-lg overflow-hidden">
+              <AccordionItem value="feature-1" className="border-b last:border-b-0">
+                <AccordionTrigger className="px-4 hover:bg-muted/50">
+                  라이브 미리보기
+                </AccordionTrigger>
+                <AccordionContent className="px-4 text-muted-foreground">
+                  이 페이지의 위쪽에서 실제로 작동하는 Accordion을 볼 수 있습니다.
+                  클릭해보세요!
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="feature-2" className="border-b last:border-b-0">
+                <AccordionTrigger className="px-4 hover:bg-muted/50">
+                  애니메이션
+                </AccordionTrigger>
+                <AccordionContent className="px-4 text-muted-foreground">
+                  열리고 닫힐 때 부드러운 슬라이드 애니메이션이 적용됩니다.
+                  `tw-animate-css` 패키지의 `animate-accordion-down/up` 클래스를 사용합니다.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="feature-3" className="border-b last:border-b-0">
+                <AccordionTrigger className="px-4 hover:bg-muted/50">
+                  접근성
+                </AccordionTrigger>
+                <AccordionContent className="px-4 text-muted-foreground">
+                  Radix UI의 Accordion primitive를 기반으로 하여 완벽한 접근성을 지원합니다.
+                  키보드 네비게이션과 ARIA 속성이 포함되어 있습니다.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+        </div>
       </ComponentSection>
 
       {/* Loading Spinner */}
