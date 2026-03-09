@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:lucide.dev)"
+      "WebFetch(domain:lucide.dev)",
+      "Skill(git:commit)"
     ]
   }
 }
